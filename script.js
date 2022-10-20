@@ -7,8 +7,8 @@ function getComputerChoice() {
     } else {
         return "scissors"
     }
-
 }
+
 function playRound (playerSelection, computerSelection) {
 
     playerSelection.toLowerCase()
@@ -24,9 +24,31 @@ function playRound (playerSelection, computerSelection) {
     } else {
         return "You Win!"
     }
-
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection))
+function game () {
+    let playerScore = 0
+    let computerScore = 0
+
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Rock, Paper or Scissors?")
+        let computerSelection = getComputerChoice()
+
+        if (playRound (playerSelection, computerSelection) === "You Win!") {
+            playerScore ++
+            alert ("You win this round!")
+        } else if (playRound (playerSelection, computerSelection) === "You Lose!") {
+            computerScore ++
+            alert ("Computer wins this round!")
+        } else 
+            alert ("This round is a tie!")
+            continue
+
+    }
+
+    alert ("You won " + playerScore + " rounds, the computer won " + computerScore + ".")
+}
+
+
+
+
