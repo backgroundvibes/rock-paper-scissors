@@ -11,7 +11,6 @@ function getComputerChoice() {
 
 function playRound (playerSelection, computerSelection) {
 
-    playerSelection.toLowerCase()
 
     if (playerSelection===computerSelection) {
         return "Tie!"
@@ -26,6 +25,26 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
+const buttons = document.querySelectorAll('button')
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+
+        let bclass = button.className;
+        let playerSelection = String(bclass);
+        let computerSelection = getComputerChoice()
+        console.log(playRound(playerSelection, computerSelection))
+    });
+});
+
+
+
+
+
+
+
+
+/*
 function game () {
     let playerScore = 0
     let computerScore = 0
@@ -48,7 +67,7 @@ function game () {
 
     alert ("You won " + playerScore + " rounds, the computer won " + computerScore + ".")
 }
-
+*/
 
 
 
