@@ -33,7 +33,8 @@ buttons.forEach((button) => {
         let bclass = button.className;
         let playerSelection = String(bclass);
         let computerSelection = getComputerChoice()
-        console.log(playRound(playerSelection, computerSelection))
+        let result = document.querySelector('div.results')
+        result.textContent = `${playRound(playerSelection, computerSelection)}`
     });
 });
 
