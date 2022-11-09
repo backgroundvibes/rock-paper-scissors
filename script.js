@@ -19,56 +19,67 @@ function playRound (playerSelection, computerSelection) {
     } else if (playerSelection=="paper" && computerSelection=="scissors") {
         return "You Lose!"
     } else if (playerSelection=="scissors" && computerSelection=="rock") {
-        return "You Lose"
+        return "You Lose!"
     } else {
         return "You Win!"
     }
 }
 
 const buttons = document.querySelectorAll('button')
-
-buttons.forEach((button) => {
+buttons.forEach ((button) => {
     button.addEventListener('click', () => {
-
         let bclass = button.className;
-        let playerSelection = String(bclass);
-        let computerSelection = getComputerChoice()
-        let result = document.querySelector('div.results')
-        result.textContent = `${playRound(playerSelection, computerSelection)}`
-    });
-});
+        let bstring = String(bclass);
+        let result = playRound(bstring, getComputerChoice())
+        scoreboard(result)
+        roundCount ()
+    })
+})
 
+let playerScore = document.querySelector(".player")
+let computerScore = document.querySelector (".computer")
+let p = 0
+let c = 0
+let roundWin = document.querySelector(".roundWinner")
 
+function scoreboard(res) {
+    rounds ++
 
-
-
-
-
-
-/*
-function game () {
-    let playerScore = 0
-    let computerScore = 0
-
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Rock, Paper or Scissors?")
-        let computerSelection = getComputerChoice()
-
-        if (playRound (playerSelection, computerSelection) === "You Win!") {
-            playerScore ++
-            alert ("You win this round!")
-        } else if (playRound (playerSelection, computerSelection) === "You Lose!") {
-            computerScore ++
-            alert ("Computer wins this round!")
-        } else 
-            alert ("This round is a tie!")
-            continue
-
+    if (res === "You Win!") {
+        roundWin.textContent = "You Win!"
+        p ++
+        playerScore.textContent = "Player Score: "
+        playerScore.textContent += p
+    } else if (res === "You Lose!") {
+        roundWin.textContent = "You Lose!"
+        c ++
+        computerScore.textContent = "Computer Score: "
+        computerScore.textContent += c
+    } else {
+        roundWin.textContent = "Tie!"
     }
-
-    alert ("You won " + playerScore + " rounds, the computer won " + computerScore + ".")
 }
-*/
 
+let rounds = 0
 
+function roundCount () {
+    if (rounds != 5) {
+       
+    } else if (p > c) {
+        roundWin.textContent = "You won the game!"
+        buttons.forEach ((button) => {
+            button.remove()
+        })
+    } else if (p < c) {
+        roundWin.textContent = "You lost the game!"
+        buttons.forEach ((button) => {
+            button.remove()
+        })
+    } else {
+        roundWin.textContent = "You tied with the computer for the game!"
+        buttons.forEach ((button) => {
+            button.remove()
+        })
+    }
+}
 
